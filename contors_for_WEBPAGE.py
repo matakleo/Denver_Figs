@@ -20,7 +20,7 @@ import os
 import cartopy.feature as cfeature
 import copy
 
-fig, ax = plt.subplots(nrows=1, ncols=2,subplot_kw={'projection': crs.PlateCarree()},figsize=(14.3, 6.3))
+fig, ax = plt.subplots(nrows=1, ncols=2,subplot_kw={'projection': crs.PlateCarree()},figsize=(16.3, 4.3))
 
 my_cmap1 = copy.copy(mpl.cm.get_cmap('twilight_shifted')) # copy the default cmap
 my_cmap1.set_bad((0,0,0))
@@ -56,8 +56,8 @@ csfont = {'fontname':'Times New Roman'}
 
 total_counter=0
 row=0
-for file_num in range(3,7):
-    for idx in range(3,6):
+for file_num in range(0,7):
+    for idx in range(0,6):
 # for file_num in range(0,1):
 #     for idx in range(0,1):
         col=0
@@ -119,7 +119,7 @@ for file_num in range(3,7):
             ax[col].stock_img()
 
             ax[col].contourf(to_np(lons1),to_np(lats1), (total_wind), 450,  vmin=vmin_set,vmax=vmax_set,     transform=crs.PlateCarree(), 
-                cmap=my_cmap1)     
+                cmap=my_cmap1)    
             ax[col].set_extent([-85,-72,8,20])    
 
             #TITLE%
@@ -138,27 +138,27 @@ for file_num in range(3,7):
                         #xstart ystart xend yend#
         # if file_num==0:
           
-        # if total_counter==0:
-        #     cax = plt.axes([0.1, 0.090, 0.85, 0.051]) 
+        if total_counter==0:
+            cax = plt.axes([0.1, 0.090, 0.85, 0.051]) 
             
 
-        #     ax[1].set_title('Default PBL Depth', **csfont,size=text_size)
-        #     # ax[0,2].set_title(r'Increased PBL height' ,size=size)
-        #     ax[0].set_title('Reduced PBL Depth',**csfont,size=text_size)
-            # cbar1=fig.colorbar(mpl.cm.ScalarMappable(norm=norm1, cmap=my_cmap1),
-            # cax=cax, orientation='horizontal',  extend='max', fraction=0.03,
-            # )
-            # cbar1.ax.tick_params(labelsize=text_size) 
-            # cbar1.set_label(r'Wind Speed $\mathrm{(\,ms^{-1}) \,}$', size=text_size)
+            ax[1].set_title('Default PBL Depth', **csfont,size=text_size)
+            # ax[0,2].set_title(r'Increased PBL height' ,size=size)
+            ax[0].set_title('Reduced PBL Depth',**csfont,size=text_size)
+            cbar1=fig.colorbar(mpl.cm.ScalarMappable(norm=norm1, cmap=my_cmap1),
+            cax=cax, orientation='horizontal',  extend='max', fraction=0.03,
+            )
+            cbar1.ax.tick_params(labelsize=text_size) 
+            cbar1.set_label(r'Wind Speed $\mathrm{(\,ms^{-1}) \,}$', size=text_size)
 
             #aadded for fixinfg
             # total_counter=28
-        # else:
-        #     cbar1=fig.colorbar(mpl.cm.ScalarMappable(norm=norm1, cmap=my_cmap1),
-        #     cax=cax, orientation='horizontal',  extend='max', fraction=0.03,
-        #     )
-        #     cbar1.ax.tick_params(labelsize=text_size) 
-        #     cbar1.set_label(r'Wind Speed $\mathrm{(\,ms^{-1}) \,}$', size=text_size)
+        else:
+            cbar1=fig.colorbar(mpl.cm.ScalarMappable(norm=norm1, cmap=my_cmap1),
+            cax=cax, orientation='horizontal',  extend='max', fraction=0.03,
+            )
+            cbar1.ax.tick_params(labelsize=text_size) 
+            cbar1.set_label(r'Wind Speed $\mathrm{(\,ms^{-1}) \,}$', size=text_size)
 
         plt.savefig(f"/Users/lmatak/Desktop/leo_python_scripts/Poster_figs/created_figs/for_animation/DENVER_anim_fig_{file_num}_{idx}.png",bbox_inches='tight')
         # plt.savefig(f"/Users/lmatak/Desktop/leo_python_scripts/Poster_figs/created_figs/for_animation/DENVER_anim_fig_19a.png",bbox_inches='tight')
